@@ -1,20 +1,29 @@
 package oop.inheritance.verifone.vx690;
 
-public class VerifoneVx690Display {
+import oop.inheritance.TPV.Display;
 
-    /**
-     * Prints a message to specied position
-     *
-     * @param x       horizontal position
-     * @param y       vertical position
-     * @param message message to be printed
-     */
+public class VerifoneVx690Display implements Display{
+
+    private boolean lightTurnedOn;
+
+    private VerifoneVx690Display(){}
+
+    private static class DisplayHolder{
+        private static final VerifoneVx690Display INSTANCE = new VerifoneVx690Display();
+    }
+
+    public static VerifoneVx690Display getInstance(){
+        return DisplayHolder.INSTANCE;
+    }
+
     public void showMessage(int x, int y, String message) {
     }
 
-    /**
-     * Clears the screen
-     */
+    @Override
+    public void toggleLight() {
+        lightTurnedOn = !lightTurnedOn;
+    }
+
     public void clear() {
 
     }

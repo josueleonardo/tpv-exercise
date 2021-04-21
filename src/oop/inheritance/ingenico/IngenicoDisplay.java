@@ -1,20 +1,29 @@
 package oop.inheritance.ingenico;
 
-public class IngenicoDisplay {
+import oop.inheritance.TPV.Display;
 
-    /**
-     * Prints a message to specied position
-     *
-     * @param x       horizontal position
-     * @param y       vertical position
-     * @param message message to be printed
-     */
+public class IngenicoDisplay implements Display{
+
+    private boolean lightTurnedOn;
+
+    public IngenicoDisplay(){}
+
+    private static class DisplayHolder{
+        private static final IngenicoDisplay INSTANCE = new IngenicoDisplay();
+    }
+
+    public static IngenicoDisplay getInstance(){
+        return DisplayHolder.INSTANCE;
+    }
+
     public void showMessage(int x, int y, String message) {
     }
 
-    /**
-     * Clears the screen
-     */
+    @Override
+    public void toggleLight() {
+        lightTurnedOn = !lightTurnedOn;
+    }
+
     public void clear() {
 
     }

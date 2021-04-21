@@ -2,31 +2,33 @@ package oop.inheritance;
 
 import java.time.LocalDateTime;
 
-import oop.inheritance.data.Card;
-import oop.inheritance.data.CommunicationType;
-import oop.inheritance.data.SupportedTerminal;
-import oop.inheritance.data.Transaction;
-import oop.inheritance.data.TransactionResponse;
-import oop.inheritance.ingenico.IngenicoCardSwipper;
-import oop.inheritance.ingenico.IngenicoChipReader;
-import oop.inheritance.ingenico.IngenicoDisplay;
-import oop.inheritance.ingenico.IngenicoEthernet;
-import oop.inheritance.ingenico.IngenicoGPS;
-import oop.inheritance.ingenico.IngenicoKeyboard;
-import oop.inheritance.ingenico.IngenicoModem;
-import oop.inheritance.ingenico.IngenicoPrinter;
+import oop.inheritance.TPV.*;
+import oop.inheritance.data.*;
+import oop.inheritance.ingenico.*;
 import oop.inheritance.verifone.v240m.VerifoneV240mDisplay;
 
 public class Application {
 
     private CommunicationType communicationType = CommunicationType.ETHERNET;
     private SupportedTerminal supportedTerminal;
+    private Factory factory;
 
     public Application(SupportedTerminal supportedTerminal) {
         this.supportedTerminal = supportedTerminal;
+        factory = new Factory(supportedTerminal);
     }
 
     public void showMenu() {
+
+        Display display = factory.getDisplayInstance();
+
+        display.showMessage(5, 5, "MENU");
+        display.showMessage(5, 10,"1. VENTA");
+        display.showMessage(5, 13,"2. DEVOLUCION");
+        display.showMessage(5, 16,"3. REPORTE");
+        display.showMessage(5, 23,"4. CONFIGURACION");
+
+        /*
         if (supportedTerminal == SupportedTerminal.INGENICO) {
             IngenicoDisplay ingenicoDisplay = new IngenicoDisplay();
 
@@ -44,6 +46,7 @@ public class Application {
             verifoneV240mDisplay.showMessage(5, 16, "3. REPORTE");
             verifoneV240mDisplay.showMessage(5, 23, "4. CONFIGURACION");
         }
+         */
 
     }
 
@@ -89,7 +92,7 @@ public class Application {
     }
 
     private void printReceipt(Transaction transaction, String hostReference) {
-        IngenicoPrinter ingenicoPrinter = new IngenicoPrinter();
+        IngenicoPrinter ingenicoPrinter = IngenicoPrinter.getInstance();
         Card card = transaction.getCard();
 
         ingenicoPrinter.print(5, "APROBADA");
@@ -143,11 +146,11 @@ public class Application {
 
     public void clearScreen() {
         if (supportedTerminal == SupportedTerminal.INGENICO) {
-            IngenicoDisplay ingenicoDisplay = new IngenicoDisplay();
+            IngenicoDisplay ingenicoDisplay = IngenicoDisplay.getInstance();
 
             ingenicoDisplay.clear();
         } else {
-            VerifoneV240mDisplay verifoneV240mDisplay = new VerifoneV240mDisplay();
+            VerifoneV240mDisplay verifoneV240mDisplay = VerifoneV240mDisplay.getInstance();
 
             verifoneV240mDisplay.clear();
         }

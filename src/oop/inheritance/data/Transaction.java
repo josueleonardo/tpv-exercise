@@ -1,5 +1,7 @@
 package oop.inheritance.data;
 
+import oop.inheritance.data.Card;
+
 import java.time.LocalDateTime;
 
 public class Transaction {

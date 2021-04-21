@@ -1,20 +1,29 @@
 package oop.inheritance.verifone.vx520;
 
-public class VerifoneVx520Display {
+import oop.inheritance.TPV.Display;
 
-    /**
-     * Prints a message to specied position
-     *
-     * @param x       horizontal position
-     * @param y       vertical position
-     * @param message message to be printed
-     */
+public class VerifoneVx520Display implements Display {
+
+    private  boolean lightTurnedOn;
+
+    private VerifoneVx520Display(){}
+
+    private static class DisplayHolder{
+        private static final VerifoneVx520Display INSTANCE = new VerifoneVx520Display();
+    }
+
+    public static VerifoneVx520Display getInstance(){
+        return DisplayHolder.INSTANCE;
+    }
+
     public void showMessage(int x, int y, String message) {
     }
 
-    /**
-     * Clears the screen
-     */
+    @Override
+    public void toggleLight() {
+        lightTurnedOn = !lightTurnedOn;
+    }
+
     public void clear() {
 
     }
