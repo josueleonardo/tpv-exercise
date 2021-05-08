@@ -1,9 +1,20 @@
+
 package oop.inheritance.ingenico;
 
 import oop.inheritance.data.Transaction;
 import oop.inheritance.data.TransactionResponse;
 
 public class IngenicoEthernet {
+
+    private IngenicoEthernet(){}
+
+    private static class EthernetHolder{
+        private static final IngenicoEthernet INSTANCE = new IngenicoEthernet();
+    }
+
+    public static IngenicoEthernet getInstance(){
+        return EthernetHolder.INSTANCE;
+    }
 
     /**
      * Opens a connection using the ethernet device

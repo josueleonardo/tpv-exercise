@@ -1,4 +1,4 @@
-package oop.inheritance.TPV;
+package oop.inheritance.core;
 
 import oop.inheritance.data.SupportedTerminal;
 import oop.inheritance.ingenico.IngenicoDisplay;
@@ -6,24 +6,25 @@ import oop.inheritance.verifone.v240m.VerifoneV240mDisplay;
 import oop.inheritance.verifone.vx520.VerifoneVx520Display;
 import oop.inheritance.verifone.vx690.VerifoneVx690Display;
 
-public class Factory {
+public class TPVFactory {
+
     SupportedTerminal supportedTerminal;
 
-    public Factory(SupportedTerminal supportedTerminal) {
+    public TPVFactory(SupportedTerminal supportedTerminal) {
         this.supportedTerminal = supportedTerminal;
     }
 
-    public Display getDisplayInstance(){
+    public TPVDisplay getDisplayInstance(){
 
         switch(supportedTerminal){
             case INGENICO:
-                return (Display) IngenicoDisplay.getInstance();
+                return IngenicoDisplay.getInstance();
             case VERIFONE_240:
-                return (Display) VerifoneV240mDisplay.getInstance();
+                return VerifoneV240mDisplay.getInstance();
             case VERIFONE_520:
-                return (Display) VerifoneVx520Display.getInstance();
+                return VerifoneVx520Display.getInstance();
             case VERIFONE_690:
-                return (Display) VerifoneVx690Display.getInstance();
+                return VerifoneVx690Display.getInstance();
             default:
                 return null;
         }

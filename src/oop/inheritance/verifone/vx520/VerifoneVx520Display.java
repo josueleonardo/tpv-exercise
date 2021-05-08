@@ -1,10 +1,10 @@
 package oop.inheritance.verifone.vx520;
 
-import oop.inheritance.TPV.Display;
+import oop.inheritance.core.TPVDisplay;
 
-public class VerifoneVx520Display implements Display {
+public class VerifoneVx520Display implements TPVDisplay {
 
-    private  boolean lightTurnedOn;
+    private boolean lightTurnedOn;
 
     private VerifoneVx520Display(){}
 

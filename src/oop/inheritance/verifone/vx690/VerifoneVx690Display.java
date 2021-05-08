@@ -1,8 +1,8 @@
 package oop.inheritance.verifone.vx690;
 
-import oop.inheritance.TPV.Display;
+import oop.inheritance.core.TPVDisplay;
 
-public class VerifoneVx690Display implements Display{
+public class VerifoneVx690Display implements TPVDisplay {
 
     private boolean lightTurnedOn;
 

@@ -1,3 +1,4 @@
+
 package oop.inheritance;
 
 import oop.inheritance.data.SupportedTerminal;

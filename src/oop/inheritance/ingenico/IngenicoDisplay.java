@@ -1,12 +1,13 @@
+
 package oop.inheritance.ingenico;
 
-import oop.inheritance.TPV.Display;
+import oop.inheritance.core.TPVDisplay;
 
-public class IngenicoDisplay implements Display{
+public class IngenicoDisplay implements TPVDisplay {
 
     private boolean lightTurnedOn;
 
-    public IngenicoDisplay(){}
+    private IngenicoDisplay(){}
 
     private static class DisplayHolder{
         private static final IngenicoDisplay INSTANCE = new IngenicoDisplay();
